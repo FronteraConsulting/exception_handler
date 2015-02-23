@@ -41,9 +41,10 @@ module ExceptionHandler
 
 		#Save
 		def save
-			ActiveRecord::Base.logger.silence do
-				ExceptionHandler::Error.create(relevant_info)
-			end
+			old_logger = ActiveRecord::Base.logger
+			ActiveRecord::Base.logger = 1
+			ExceptionHandler::Error.create(relevant_info)
+			ActiveRecord::Base.logger = old_logger
  			log(relevant_info)
 		end
 
