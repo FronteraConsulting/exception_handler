@@ -42,7 +42,7 @@ module ExceptionHandler
 		#Save
 		def save
 			old_logger = ActiveRecord::Base.logger
-			ActiveRecord::Base.logger = 1
+			ActiveRecord::Base.logger = nil
 			ExceptionHandler::Error.create(relevant_info)
 			ActiveRecord::Base.logger = old_logger
  			log(relevant_info)
